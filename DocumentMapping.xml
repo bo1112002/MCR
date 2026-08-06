@@ -1,0 +1,511 @@
+<?xml version="1.0"?>
+
+<EntityMapingMaps>
+
+  <!-- 文档信息 -->
+  <EntityMaping Key="SDOC" MapingType="MCR.Mods.SourceDocument"  TableName="SourceDocument"  DataBaseKey="connA">
+    <Parames>
+      <P PropertyName="AutoID" SourceColumn="AutoID" DbType="Int" Size="50" Direction="Input" />
+      <P PropertyName="Name" SourceColumn="Name" DbType="Int" Size="50" Direction="Input" />
+      <P PropertyName="MemberID" SourceColumn="MemberID" DbType="Int" Size="50" Direction="Input" />
+      <P PropertyName="FileType" SourceColumn="FileType" DbType="Int" Size="4" Direction="Input" />
+      <P PropertyName="TotalPage" SourceColumn="TotalPage" DbType="Int" Size="4" Direction="Input" />
+      <P PropertyName="FType" SourceColumn="FType" DbType="Int" Size="4" Direction="Input" />
+      <P PropertyName="DocFileID" SourceColumn="DocFileID" DbType="Int" Size="50" Direction="Input" />
+      <P PropertyName="FileID" SourceColumn="FileID" DbType="Int" Size="50" Direction="Input" />
+      <P PropertyName="IsShare" SourceColumn="IsShare" DbType="Int" Size="1" Direction="Input" />
+      <P PropertyName="IsDisabe" SourceColumn="IsDisabe" DbType="Int" Size="1" Direction="Input" />
+      <P PropertyName="CTime" SourceColumn="CTime" DbType="DateTime" Size="8" Direction="Input" />
+    </Parames>
+    <UItems>
+      <Sql Key="Insert"  SqlType="Edit">
+        INSERT INTO [SourceDocument]
+        ([AutoID],[Name],[MemberID],[FileType],[TotalPage],[FType],[FileID],[DocFileID],[IsShare],[IsDisabe],[CTime])
+        VALUES
+        (@AutoID,@Name,@MemberID,@FileType,@TotalPage,@FType,@FileID,@DocFileID,@IsShare,@IsDisabe,@CTime) ;
+      </Sql>
+      <Sql Key="Delete" SqlType="Edit" >
+        DELETE [SourceDocument] WHERE  [AutoID]=@AutoID
+      </Sql>
+      <Sql Key="Update_IsShare" SqlType="Edit" >
+        UPDATE [SourceDocument] SET  [IsShare]=@IsShare   WHERE  [AutoID]=@AutoID ;
+      </Sql>
+      <Sql Key="Update_IsDisabe" SqlType="Edit" >
+        UPDATE [SourceDocument] SET  [IsDisable]=@IsDisable   WHERE  [AutoID]=@AutoID ;
+      </Sql>
+      <Sql Key="Update_File" SqlType="Edit" >
+        UPDATE [SourceDocument] SET  [FileID]=@FileID   WHERE  [AutoID]=@AutoID ;
+      </Sql>
+
+
+
+      <Sql Key="GetByID" SqlType="View">
+        Select  *  From [SourceDocument] WHERE  [AutoID]=@AutoID
+      </Sql>
+      <Sql Key="GetByFileID" SqlType="View">
+        Select top(1) *  From [SourceDocument] WHERE  [FileID]=@FileID
+      </Sql>
+      <Sql Key="GetSourceByMID" SqlType="View">
+        Select   *  From [SourceDocument] Where  IsShare LIKE @IsShare And  MemberID =@MemberID ORDER BY CTime DESC ;
+      </Sql>
+      <Sql Key="GetListByMember_More" SqlType="View">
+        Select TOP(10) * From [SourceDocument] Where  MemberID =@MemberID And  @LastID > AutoID  And  Name LIKE @Name
+        ORDER BY AutoID DESC;
+      </Sql>
+
+      <Sql Key="GetListAllShare_More" SqlType="View" Tag="公共库">
+        Select TOP(10) * From [SourceDocument] Where   @LastID > AutoID  And  Name LIKE @Name 
+        And ( IsShare=1   OR  MemberID  = @MemberID )
+        And MemberID IN ( SELECT  AutoID  FROM Member WHERE SchoolID=@SchoolID )
+        ORDER BY DocFileID,AutoID DESC;
+      </Sql>
+      <Sql Key="GetListAllShare_More_bakA" SqlType="View" Tag="公共库">
+        Select TOP(10) * From [SourceDocument] Where   @LastID > AutoID  And  Name LIKE @Name And  FType LIKE @FType
+        And ( IsShare=1   OR  MemberID  = @MemberID )
+        And MemberID IN ( SELECT  AutoID  FROM Member WHERE SchoolID=@SchoolID )
+        ORDER BY AutoID DESC;
+      </Sql>
+      <Sql Key="GetListAllShare_More2" SqlType="View" Tag="个人库">
+        Select TOP(10) * From [SourceDocument] Where   @LastID > AutoID  And  Name LIKE @Name And  FType LIKE @FType
+        And  MemberID  = @MemberID
+        ORDER BY DocFileID,AutoID DESC;
+      </Sql>
+
+      <Sql Key="GetSourceBySID" SqlType="View">
+        Select  A.*  From [SourceDocument] A LEFT JOIN [Member] B ON B.AutoID = A.MemberID
+        Where B.SchoolID =@SchoolID And A.FType LIKE @FType
+      </Sql>
+      <Sql Key="GetSourceCountBySchoolAndFType" SqlType="View">
+        Select   COUNT(1)  From [SourceDocument] A LEFT JOIN [Member] B ON B.AutoID = A.MemberID
+        Where B.SchoolID =@SchoolID And A.FType = @FType
+      </Sql>
+      <Sql Key="GetSourceListBySchoolAndFType" SqlType="View">
+        Select   *  From [SourceDocument] A LEFT JOIN [Member] B ON B.AutoID = A.MemberID
+        Where B.SchoolID =@SchoolID And A.FType = @FType ;
+        Select   COUNT(1)  From [SourceDocument] A LEFT JOIN [Member] B ON B.AutoID = A.MemberID
+        Where B.SchoolID =@SchoolID And A.FType = @FType ;
+      </Sql>
+      <Sql Key="GetSourceListByFType" SqlType="View">
+        SELECT  *  From  SourceDocument where FType = @FType ;
+        SELECT  COUNT(1)  From  SourceDocument where FType = @FType ;
+      </Sql>
+
+
+      <Sql Key="GetSourceCountByFType" SqlType="View">
+        Select   COUNT(1)  From [SourceDocument]  Where  FType = @FType
+        AND AutoID in (  SELECT DocumentID FROM CourseInfo WHERE SubjectID=@SubjectID And RoomClassID=@RoomClassID   );
+      </Sql>
+      <Sql Key="GetSourceListByFType2" SqlType="View">
+        Select   *  From [SourceDocument]  Where  FType = @FType
+        AND AutoID in (  SELECT DocumentID FROM CourseInfo WHERE SubjectID=@SubjectID And RoomClassID=@RoomClassID   ) ;
+      </Sql>
+
+    </UItems>
+  </EntityMaping>
+
+
+  <!-- 题目信息 -->
+  <EntityMaping Key="QUES" MapingType="MCR.Mods.QuestionInfo"  TableName="QuestionInfo"  DataBaseKey="connA">
+    <Parames>
+      <P PropertyName="AutoID" SourceColumn="AutoID" DbType="Int" Size="50" Direction="Input" />
+      <P PropertyName="DocumentID" SourceColumn="DocumentID" DbType="Int" Size="50" Direction="Input" />
+      <P PropertyName="PageIndex" SourceColumn="PageIndex" DbType="Int" Size="50" Direction="Input" />
+      <P PropertyName="MemberID" SourceColumn="MemberID" DbType="Int" Size="4" Direction="Input" />
+      <P PropertyName="GID" SourceColumn="GID" DbType="Int" Size="4" Direction="Input" />
+      <P PropertyName="QType" SourceColumn="QType" DbType="Int" Size="4" Direction="Input" />
+      <P PropertyName="Caption" SourceColumn="Caption" DbType="Int" Size="50" Direction="Input" />
+      <P PropertyName="Value" SourceColumn="Value" DbType="Int" Size="50" Direction="Input" />
+      <P PropertyName="CTime" SourceColumn="CTime" DbType="DateTime" Size="8" Direction="Input" />
+      <P PropertyName="CourseDetaileID" SourceColumn="CourseDetaileID" DbType="DateTime" Size="8" Direction="Input" />
+      <P PropertyName="IsSubmit" SourceColumn="IsSubmit" DbType="DateTime" Size="8" Direction="Input" />
+
+    </Parames>
+    <UItems>
+      <Sql Key="Insert"  SqlType="Edit">
+        INSERT INTO [QuestionInfo]
+        ([AutoID],[DocumentID],[PageIndex],[MemberID],[GID],[QType],[Caption],[Value],[CTime],[CourseDetaileID])
+        VALUES
+        (@AutoID,@DocumentID,@PageIndex,@MemberID,@GID,@QType,@Caption,@Value,@CTime,@CourseDetaileID) ;
+      </Sql>
+
+      <Sql Key="Update"  SqlType="Edit">
+        UPDATE [QuestionInfo] SET [QType]=@QType,[Caption]=@Caption,[Value]=@Value   WhERE [AutoID]=@AutoID ;
+      </Sql>
+      <Sql Key="Update_Submit"  SqlType="Edit">
+        UPDATE [QuestionInfo] SET [IsSubmit]=@IsSubmit   WhERE [AutoID]=@AutoID ;
+      </Sql>
+      <Sql Key="Update_Submit_ALL"  SqlType="Edit">
+        UPDATE [QuestionInfo] SET [IsSubmit]=@IsSubmit   WhERE [CourseDetaileID]=@CourseDetaileID ;
+      </Sql>
+
+      <Sql Key="Delete" SqlType="Edit" >
+        DELETE [QuestionInfo] WHERE  [AutoID]=@AutoID
+      </Sql>
+
+      <Sql Key="GetByID" SqlType="View">
+        Select  *  From [QuestionInfo] WHERE  [AutoID]=@AutoID
+      </Sql>
+      <Sql Key="GetByDocumentAndPage" SqlType="View">
+        Select  *  From [QuestionInfo] WHERE  DocumentID=@DocumentID AND PageIndex=@PageIndex
+      </Sql>
+      <Sql Key="GetListByMember" SqlType="View">
+        Select   *  From [QuestionInfo] Where  QType = @QType And  MemberID =@MemberID ORDER BY CTime DESC ;
+      </Sql>
+      <Sql Key="GetListByDocument" SqlType="View">
+        Select   *  From [QuestionInfo] Where   DocumentID =@DocumentID ORDER BY CTime DESC ;
+      </Sql>
+
+
+      <Sql Key="GetListByCourse_Error" SqlType="View" Tag="查询某课程的有错题信息集合及每题的错误人数">
+        SELECT QuestionID,  ErrorCount=COUNT(1) FROM (
+        SELECT   QuestionID  , W_MmeberID = C.MemberID    FROM QuestionItemInfo A
+        LEFT JOIN QuestionResult C ON C.QuestionItemID = A.AutoID
+        WHERE   A.IsVal != C.[Value] And C.AutoID  IS NOT NULL
+        And C.CourseInfoID =@CourseInfoID
+        AND  C.MemberID IN ( SELECT AutoID FROM Member WHERE MType = 0  )
+        GROUP BY A.QuestionID , C.MemberID
+        ) T1
+        LEFT JOIN  QuestionInfo T2  ON T2.AutoID = T1.QuestionID
+        WHERE (T2.QType = 1 OR T2.QType=2 )
+        GROUP BY QuestionID
+      </Sql>
+
+      <Sql Key="GetListByCourse_Error2" SqlType="View" Tag="查询某课程某学生的有错题信息集合及每题的错误人数">
+        SELECT QuestionID,  ErrorCount=COUNT(1) FROM (
+        SELECT   QuestionID  , W_MmeberID = C.MemberID    FROM QuestionItemInfo A
+        LEFT JOIN QuestionResult C ON C.QuestionItemID = A.AutoID
+        WHERE   A.IsVal != C.[Value] And C.AutoID  IS NOT NULL
+        And C.CourseInfoID =@CourseInfoID
+        AND  C.MemberID = @MemberID
+        GROUP BY A.QuestionID , C.MemberID
+        ) T1
+        LEFT JOIN  QuestionInfo T2  ON T2.AutoID = T1.QuestionID
+        WHERE (T2.QType = 1 OR T2.QType=2 )
+        GROUP BY QuestionID
+      </Sql>
+
+
+
+      <Sql Key="GetCount_JoinQuestionByMember" SqlType="View" Tag="获取成员参与答题的总题数及错题数">
+        SELECT  CountAllMember_QuestionResult = COUNT(1)  FROM  QuestionInfo WHERE AutoID in (
+        SELECT  QuestionInfoID FROM QuestionResult  WHERE MemberID=@MemberID ) ;
+
+        SELECT  CountAllMember_OK_QuestionResult= COUNT(1)  FROM  QuestionInfo WHERE AutoID in (
+        SELECT   QuestionID   FROM QuestionItemInfo A
+        LEFT JOIN QuestionResult C ON C.QuestionItemID = A.AutoID
+        WHERE  A.IsVal != C.[Value] And C.AutoID  IS NOT NULL
+        AND  C.MemberID =@MemberID   )  ;
+      </Sql>
+
+      <Sql Key="GetList_CourseDetaile_ALL_QST" SqlType="View" Tag="获取课程章节的相关习题">
+        SELECT * FROM QuestionInfo WHERE CourseDetaileID=@CourseDetaileID  And QType IN (1,2) ORDER BY CTime DESC ;
+      </Sql>
+      <Sql Key="GetList_CourseDetaile_QST" SqlType="View" Tag="获取课程章节的相关习题">
+        SELECT * FROM QuestionInfo WHERE CourseDetaileID=@CourseDetaileID And IsSubmit=@IsSubmit And QType IN (1,2)
+        ORDER BY CTime DESC ;
+      </Sql>
+      <Sql Key="GetList_CourseDetaile_COUNT_QST" SqlType="View" Tag="获取课程章节的相关习题的数">
+        SELECT COUNT(1) FROM QuestionInfo WHERE CourseDetaileID=@CourseDetaileID And IsSubmit=@IsSubmit  And QType IN (1,2)  ;
+      </Sql>
+
+
+      <Sql Key="GetListByErrorItem_QST" SqlType="View">
+        SELECT * FROM QuestionInfo WHERE AutoID IN (
+        SELECT A.QuestionID FROM (
+        SELECT * FROM QuestionItemInfo WHERE QuestionID  IN (
+        SELECT AutoID FROM QuestionInfo WHERE CourseDetaileID = @CourseDetaileID  And QType IN (1,2)  )  ) A
+        LEFT JOIN (SELECT * FROM QuestionResult WHERE MemberID = @MemberID ) C  ON C.QuestionItemID = A.AutoID
+        WHERE   A.IsVal !=  C.[Value]
+        ) ;
+      </Sql>
+
+      <Sql Key="GetList_CourseDetaile_QST_Vote3" SqlType="View" Tag="获取课程章节的相关投票">
+        SELECT * FROM QuestionInfo WHERE CourseDetaileID=@CourseDetaileID And IsSubmit=@IsSubmit And QType IN (3)
+        ORDER BY CTime DESC ;
+      </Sql>
+      <Sql Key="GetList_CourseDetaile_ALL_QST_Vote3" SqlType="View" Tag="获取课程章节的相关投票">
+        SELECT * FROM QuestionInfo WHERE CourseDetaileID=@CourseDetaileID  And QType IN (3) ORDER BY CTime DESC ;
+      </Sql>
+      
+    </UItems>
+  </EntityMaping>
+
+
+  <!-- 题项信息 -->
+  <EntityMaping Key="QITEM" MapingType="MCR.Mods.QuestionItemInfo"  TableName="QuestionItemInfo"  DataBaseKey="connA">
+    <Parames>
+      <P PropertyName="AutoID" SourceColumn="AutoID" DbType="Int" Size="50" Direction="Input" />
+      <P PropertyName="QuestionID" SourceColumn="QuestionID" DbType="Int" Size="50" Direction="Input" />
+      <P PropertyName="IsVal" SourceColumn="IsVal" DbType="Int" Size="50" Direction="Input" />
+      <P PropertyName="ValText" SourceColumn="ValText" DbType="Int" Size="4" Direction="Input" />
+      <P PropertyName="ItemKey" SourceColumn="ItemKey" DbType="Int" Size="4" Direction="Input" />
+      <P PropertyName="TagString" SourceColumn="TagString" DbType="Int" Size="4" Direction="Input" />
+    </Parames>
+    <UItems>
+      <Sql Key="Insert"  SqlType="Edit">
+        INSERT INTO [QuestionItemInfo]
+        ([AutoID],[QuestionID],[IsVal],[ValText],[ItemKey] ,[TagString])
+        VALUES
+        (@AutoID,@QuestionID,@IsVal,@ValText,@ItemKey, @TagString ) ;
+      </Sql>
+
+      <Sql Key="Update"  SqlType="Edit">
+        UPDATE [QuestionItemInfo] SET [IsVal]=@IsVal ,[ValText]=@ValText  WhERE [AutoID]=@AutoID ;
+      </Sql>
+
+      <Sql Key="Delete" SqlType="Edit" >
+        DELETE [QuestionItemInfo] WHERE  [AutoID]=@AutoID
+      </Sql>
+      <Sql Key="DeleteByQuestionInfo" SqlType="Edit" >
+        DELETE [QuestionItemInfo] WHERE  [QuestionID]=@QuestionID
+      </Sql>
+
+      <Sql Key="GetByID" SqlType="View">
+        Select  *  From [QuestionItemInfo] WHERE  [AutoID]=@AutoID
+      </Sql>
+      <Sql Key="GetByItemKey" SqlType="View">
+        Select  *  From [QuestionItemInfo] WHERE  [ItemKey]=@ItemKey
+      </Sql>
+
+      <Sql Key="GetListByQuest" SqlType="View">
+        Select  *  From [QuestionItemInfo] WHERE  [QuestionID]=@QuestionID
+      </Sql>
+      <Sql Key="GetListByMemberQResult" SqlType="View" Tag="获取某个成员的题项与相应答题结果信息">
+        SELECT  A.*  ,  QResultID =  ISNULL(  B.AutoID , '' )
+        FROM QuestionItemInfo A
+        LEFT  JOIN  QuestionResult B ON B.QuestionItemID = A.AutoID And B.MemberID =@MemberID And B.CourseInfoID =@CourseInfoID
+        WHERE A.QuestionID =@QuestionID
+      </Sql>
+
+
+     
+    </UItems>
+  </EntityMaping>
+
+
+
+  <!--阅读资源文件信息-->
+  <EntityMaping Key="SDOCR" MapingType="MCR.Mods.SourceDocument_Read"  TableName="SourceDocument_Read"  DataBaseKey="connA">
+    <Parames>
+      <P PropertyName="AutoID" SourceColumn="AutoID" DbType="Int" Size="50" Direction="Input" />
+      <P PropertyName="DocumentID" SourceColumn="DocumentID" DbType="Int" Size="50" Direction="Input" />
+      <P PropertyName="CourseID" SourceColumn="CourseID" DbType="Int" Size="50" Direction="Input" />
+      <P PropertyName="MemberID" SourceColumn="MemberID" DbType="Int" Size="50" Direction="Input" />
+      <P PropertyName="PageIndex" SourceColumn="PageIndex" DbType="Int" Size="50" Direction="Input" />
+      <P PropertyName="MiuToal" SourceColumn="MiuToal" DbType="Int" Size="4" Direction="Input" />
+      <P PropertyName="ReadLog" SourceColumn="ReadLog" DbType="Int" Size="4" Direction="Input" />
+      <P PropertyName="CTime" SourceColumn="CTime" DbType="DateTime" Size="8" Direction="Input" />
+    </Parames>
+    <UItems>
+      <Sql Key="Insert"  SqlType="Edit">
+        INSERT INTO [SourceDocument_Read]
+        ([AutoID],[DocumentID],[CourseID],[MemberID],[PageIndex],[MiuToal],[ReadLog],[CTime] )
+        VALUES
+        (@AutoID,@DocumentID,@CourseID, @MemberID,@PageIndex , @MiuToal,@ReadLog ,@CTime) ;
+      </Sql>
+      <Sql Key="Update_MiuToal" SqlType="Edit" >
+        UPDATE [SourceDocument_Read] SET MiuToal=@MiuToal WHERE [AutoID]=@AutoID
+      </Sql>
+      <Sql Key="Update_ReadLog" SqlType="Edit" >
+        UPDATE [SourceDocument_Read] SET ReadLog=@ReadLog WHERE [AutoID]=@AutoID
+      </Sql>
+
+      <Sql Key="Delete" SqlType="Edit" >
+        DELETE [SourceDocument_Read] WHERE  [AutoID]=@AutoID
+      </Sql>
+      <Sql Key="Delete2" SqlType="Edit" >
+        DELETE [SourceDocument_Read] WHERE  [DocumentID]=@DocumentID
+      </Sql>
+
+      <Sql Key="GetByID" SqlType="View">
+        Select  *  From [SourceDocument_Read] WHERE  [AutoID]=@AutoID
+      </Sql>
+
+      <Sql Key="GetByDocument" SqlType="View">
+        Select  *  From [SourceDocument_Read] WHERE  [DocumentID]=@DocumentID And  MemberID=@MemberID ;
+      </Sql>
+      <Sql Key="GetByDocumentToRead" SqlType="View">
+        Select  COUNT(1)  From [SourceDocument_Read] WHERE  [DocumentID]=@DocumentID And  MemberID=@MemberID And  MiuToal > 1 ;
+      </Sql>
+      <Sql Key="GetCountByDocumentToReadOK" SqlType="View">
+        SELECT COUNT(1) FROM (
+        SELECT DocumentID , MemberID ,COUNT(1) as PageCount FROM  SourceDocument_Read
+        WHERE   MiuToal > 1
+        GROUP BY  DocumentID ,MemberID ) A
+        LEFT JOIN ( SELECT AutoID, TotalPage FROM SourceDocument ) B ON B.AutoID= A.DocumentID
+        WHERE A.PageCount >= B.TotalPage AND A.DocumentID = @DocumentID ;
+      </Sql>
+      <Sql Key="GetCountByDocumentToReadOK2" SqlType="View">
+        SELECT COUNT(1) FROM (
+        SELECT DocumentID , MemberID ,COUNT(1) as PageCount FROM  SourceDocument_Read
+        WHERE   CourseID =@CourseID
+        GROUP BY  DocumentID ,MemberID ) A
+        LEFT JOIN ( SELECT AutoID, TotalPage FROM SourceDocument ) B ON B.AutoID= A.DocumentID
+        WHERE A.PageCount >= B.TotalPage  ;
+      </Sql>
+      <Sql Key="GetByPageToRead" SqlType="View">
+        Select  *  From [SourceDocument_Read] WHERE  [DocumentID]=@DocumentID And  MemberID=@MemberID And PageIndex=@PageIndex;
+      </Sql>
+      <Sql Key="GetByPageToRead2" SqlType="View">
+        Select  *  From [SourceDocument_Read] WHERE  [CourseID]=@CourseID And  MemberID=@MemberID And PageIndex=@PageIndex;
+      </Sql>
+      <Sql Key="GetCountByRead" SqlType="View">
+        SELECT COUNT(1) FROM  SourceDocument_Read
+        WHERE DocumentID=@DocumentID And  MemberID=@MemberID
+        GROUP BY  DocumentID , MemberID
+      </Sql>
+
+    </UItems>
+  </EntityMaping>
+
+
+
+
+  <!--答题项结果信息-->
+  <EntityMaping Key="QREST" MapingType="MCR.Mods.QuestionResult"  TableName="QuestionResult"  DataBaseKey="connA">
+    <Parames>
+      <P PropertyName="AutoID" SourceColumn="AutoID" DbType="Int" Size="50" Direction="Input" />
+      <P PropertyName="MemberID" SourceColumn="MemberID" DbType="Int" Size="50" Direction="Input" />
+      <P PropertyName="CourseInfoID" SourceColumn="CourseInfoID" DbType="Int" Size="50" Direction="Input" />
+      <P PropertyName="QuestionInfoID" SourceColumn="QuestionInfoID" DbType="Int" Size="4" Direction="Input" />
+      <P PropertyName="QuestionItemID" SourceColumn="QuestionItemID" DbType="Int" Size="4" Direction="Input" />
+      <P PropertyName="Value" SourceColumn="Value" DbType="Int" Size="4" Direction="Input" />
+      <P PropertyName="CTime" SourceColumn="CTime" DbType="DateTime" Size="8" Direction="Input" />
+      <P PropertyName="CourseDetaileID" SourceColumn="CourseDetaileID" DbType="DateTime" Size="8" Direction="Input" />
+      
+    </Parames>
+    <UItems>
+      <Sql Key="Insert"  SqlType="Edit">
+        INSERT INTO [QuestionResult]
+        ([AutoID],[MemberID],[CourseInfoID],[QuestionInfoID],[QuestionItemID],[Value],[CTime],[CourseDetaileID] )
+        VALUES
+        (@AutoID,@MemberID,@CourseInfoID,@QuestionInfoID , @QuestionItemID,@Value ,@CTime,@CourseDetaileID) ;
+      </Sql>
+      <Sql Key="Delete" SqlType="Edit" >
+        DELETE [QuestionResult] WHERE  [AutoID]=@AutoID
+      </Sql>
+      <Sql Key="Delete2" SqlType="Edit" >
+        DELETE [QuestionResult] WHERE  [MemberID]=@MemberID And [CourseInfoID]=@CourseInfoID And [QuestionItemID]=@QuestionItemID
+      </Sql>
+      <Sql Key="Delete3" SqlType="Edit" >
+        DELETE [QuestionResult] WHERE  [MemberID]=@MemberID And [CourseInfoID]=@CourseInfoID And [QuestionInfoID]=@QuestionInfoID
+      </Sql>
+      <Sql Key="Delete_QST" SqlType="Edit" >
+        DELETE [QuestionResult] WHERE  [QuestionInfoID]=@QuestionInfoID
+      </Sql>
+      <Sql Key="Delete_QST2" SqlType="Edit"  Tag="删除某人某章节习题的所有答题结果">
+        DELETE [QuestionResult] WHERE  [MemberID]=@MemberID And [CourseDetaileID]=@CourseDetaileID ;
+      </Sql>
+
+      <Sql Key="GetByID" SqlType="View">
+        Select  *  From [QuestionResult] WHERE  [AutoID]=@AutoID
+      </Sql>
+      <Sql Key="GetByID2" SqlType="View">
+        Select  *  From [QuestionResult] WHERE  [MemberID]=@MemberID And [CourseInfoID]=@CourseInfoID And [QuestionItemID]=@QuestionItemID
+      </Sql>
+
+      <Sql Key="GetListByQuestResult" SqlType="View">
+        Select  *  From [QuestionResult] WHERE  [MemberID]=@MemberID And  CourseInfoID=@CourseInfoID And QuestionInfoID=@QuestionInfoID ;
+      </Sql>
+
+      <Sql Key="GetListByQuestResult_QST" SqlType="View">
+        SELECT * FROM  QuestionResult WHERE [CourseDetaileID] =@CourseDetaileID And MemberID=@MemberID  ;
+      </Sql>
+
+      <Sql Key="GetListByQuestResult_QST_Vote3" SqlType="View">
+        SELECT QuestionItemID , COUNT(1) FROM  QuestionResult WHERE [CourseDetaileID] =@CourseDetaileID  AND VALUE=1  GROUP BY QuestionItemID
+      </Sql>
+      
+
+    </UItems>
+  </EntityMaping>
+
+
+
+  <!--课程的弹幕消息-->
+  <EntityMaping Key="DOCSPK" MapingType="MCR.Mods.Document_Speak"  TableName="Document_Speak"  DataBaseKey="connA">
+    <Parames>
+      <P PropertyName="AutoID" SourceColumn="AutoID" DbType="Int" Size="50" Direction="Input" />
+      <P PropertyName="MemberID" SourceColumn="MemberID" DbType="Int" Size="50" Direction="Input" />
+      <P PropertyName="CourseInfoID" SourceColumn="CourseInfoID" DbType="Int" Size="50" Direction="Input" />
+      <P PropertyName="DocumentID" SourceColumn="DocumentID" DbType="Int" Size="4" Direction="Input" />
+      <P PropertyName="Time_SeqVale" SourceColumn="Time_SeqVale" DbType="Int" Size="4" Direction="Input" />
+      <P PropertyName="MsgContent" SourceColumn="MsgContent" DbType="Int" Size="4" Direction="Input" />
+      <P PropertyName="CTime" SourceColumn="CTime" DbType="DateTime" Size="8" Direction="Input" />
+    </Parames>
+    <UItems>
+      <Sql Key="Insert"  SqlType="Edit">
+        INSERT INTO [Document_Speak]
+        ([AutoID],[MemberID],[CourseInfoID],[DocumentID],[Time_SeqVale],[MsgContent],[CTime] )
+        VALUES
+        (@AutoID,@MemberID,@CourseInfoID,@DocumentID , @Time_SeqVale,@MsgContent ,@CTime) ;
+      </Sql>
+      <Sql Key="Delete" SqlType="Edit" >
+        DELETE [Document_Speak] WHERE  [AutoID]=@AutoID
+      </Sql>
+
+      <Sql Key="GetByID" SqlType="View">
+        Select  *  From [Document_Speak] WHERE  [AutoID]=@AutoID
+      </Sql>
+
+      <Sql Key="GetItems" SqlType="View">
+        Select  *  From [Document_Speak] WHERE  [CourseInfoID]=@CourseInfoID  ORDER BY Time_SeqVale ;
+      </Sql>
+
+
+    </UItems>
+  </EntityMaping>
+
+
+
+  <!--课程的弹幕消息-->
+  <EntityMaping Key="SOUP" MapingType="MCR.Mods.SoundPage"  TableName="SoundPage"  DataBaseKey="connA">
+    <Parames>
+      <P PropertyName="AutoID" SourceColumn="AutoID" DbType="Int" Size="50" Direction="Input" />
+      <P PropertyName="MemberID" SourceColumn="MemberID" DbType="Int" Size="50" Direction="Input" />
+      <P PropertyName="DocumentID" SourceColumn="DocumentID" DbType="Int" Size="4" Direction="Input" />
+      <P PropertyName="CourseInfoID" SourceColumn="CourseInfoID" DbType="Int" Size="50" Direction="Input" />
+      <P PropertyName="PageIndex" SourceColumn="PageIndex" DbType="Int" Size="4" Direction="Input" />
+      <P PropertyName="SoundIndex" SourceColumn="SoundIndex" DbType="Int" Size="4" Direction="Input" />
+      <P PropertyName="SType" SourceColumn="SType" DbType="Int" Size="4" Direction="Input" />
+      <P PropertyName="URL" SourceColumn="URL" DbType="Int" Size="4" Direction="Input" />
+      <P PropertyName="IsShare" SourceColumn="IsShare" DbType="Int" Size="4" Direction="Input" />
+      <P PropertyName="FileID" SourceColumn="FileID" DbType="Int" Size="4" Direction="Input" />
+      <P PropertyName="CTime" SourceColumn="CTime" DbType="DateTime" Size="8" Direction="Input" />
+    </Parames>
+    <UItems>
+      <Sql Key="Insert"  SqlType="Edit">
+        INSERT INTO [SoundPage]
+        ([AutoID],[MemberID],[CourseInfoID],[DocumentID],[PageIndex],[SoundIndex],[SType],[URL],[IsShare],[FileID],[CTime] )
+        VALUES
+        (@AutoID,@MemberID,@CourseInfoID,@DocumentID,@PageIndex,@SoundIndex,@SType,@URL,@IsShare,@FileID,@CTime );
+      </Sql>
+      <Sql Key="Delete" SqlType="Edit" >
+        DELETE [SoundPage] WHERE  [AutoID]=@AutoID
+      </Sql>
+      <Sql Key="Delete_Page" SqlType="Edit" >
+        DELETE [SoundPage] WHERE  HERE  [DocumentID]=@DocumentID  And [PageIndex]=@PageIndex
+      </Sql>
+
+
+      <Sql Key="GetByID" SqlType="View">
+        Select  *  From [SoundPage] WHERE  [AutoID]=@AutoID
+      </Sql>
+      <Sql Key="GetItems" SqlType="View">
+        Select  *  From [SoundPage] WHERE  [CourseInfoID]=@CourseInfoID And  [PageIndex]=@PageIndex ORDER BY SoundIndex ;
+      </Sql>
+      <Sql Key="GetCount_Items" SqlType="View">
+        Select  COUNT(1)  From [SoundPage] WHERE  [CourseInfoID]=@CourseInfoID And  [PageIndex]=@PageIndex  ;
+      </Sql>
+
+      <Sql Key="GetItemByDocumentID" SqlType="View">
+        Select  *  From [SoundPage] WHERE  [DocumentID]=@DocumentID  And [PageIndex]=@PageIndex  ORDER BY SoundIndex ;
+      </Sql>
+
+    </UItems>
+  </EntityMaping>
+
+
+</EntityMapingMaps>
+
+

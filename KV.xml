@@ -1,0 +1,307 @@
+<?xml version="1.0"?>
+<ArrayOfKeyValueClass xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <!--
+  说明：（代码对应的结构类型->KeyValueClass）
+  Key:标签->变量名或标识名
+  Val:标签对应的值
+  Tag:标识：默认值：UI(如果需要自动标注则为默认值，否则过滤Tag<>UI的标签)
+  Chidls:子项(可以无限嵌套子项(无限级)，当前只应用了两级)
+  如：
+  <KeyValueClass Key="U_UserGroup1Edit" Val="" >
+    <Childs>
+      <KeyValueClass Key="groupBox1" Val="groupBox1" />
+      <KeyValueClass Key="label3" Val="label3" />
+    </Childs>
+  </KeyValueClass>
+  -->
+  <KeyValueClass Key="EntityMapping_XML" Val="G:\Micro_Classroom\MCR_New\MCR\EntityMapping.xml"  Tag="实体类型映射文件" ></KeyValueClass>
+  <KeyValueClass Key="SessionUserBase" Val=""  Tag="令牌功能的实现类" M=""></KeyValueClass>
+  <KeyValueClass Key="WebSocket_URL" Val="ws://coder.oscarma.com:8055/MCR?PName=WebServer"  Tag="获取当前WebSocket通信的URL"/>
+
+  <!--
+  MCR.tool.ConverterJson_FastJson,MCR 或 MCR.tool.ConverterJson_Imp,MCR
+  -->
+  <KeyValueClass Key="ConverterJson" Val=""  Tag="JSON格式转换的实现类" M="MCR.tool.ConverterJson_FastJson,MCR"></KeyValueClass>
+
+  <!--数据库连接字符串-->
+  <KeyValueClass Key="connectionStrings"  Val="connA"   M="Tools.AccessDB.EntityReader_Factory,Tools"  Tag="连接数据库字符串">
+    <Childs>
+      <KeyValueClass Key="connA"  Val="SERVER=.;UID=sa;PWD=123456;DATABASE=db_MCR;" />
+      <KeyValueClass Key="connA_mysql"  Val="Data Source=.;Initial Catalog=db_MCR;User ID=sa;pwd=123456;" />
+    </Childs>
+  </KeyValueClass>
+  <!--缓存配置-->
+  <KeyValueClass Key="Cache"  Val=""    Tag="缓存配置,如果val为空则不缓存">
+    <Childs>
+      <KeyValueClass Key="Cache_Default" Val=""  M="Tools.Cache.CacheSafe,Tools"  Tag="本地缓存(进程内缓存)" />
+      <KeyValueClass Key="MyCache" Val=""  M="Tools.Cache.MyCache,Tools"  Tag="本地缓存(进程内缓存)" />
+      <KeyValueClass Key="Cache_HashClass" Val=""  M="OSM.Models.Tools.Cache_HashClass"  Tag="本地缓存(进程内缓存)-带缓存时间的限制" />
+      <KeyValueClass Key="CahceHashHander" Val=""  M="OSM.Models.Tools.CahceHashHander_Factory_Defaul"  Tag="本地缓存(进程内缓存)" />
+      <KeyValueClass Key="Cache_Redis"  Val="192.168.10.246:6379"   M="osm_tools.CacheParts.Cache_Redis,osm_tools"  Tag="全局缓存(进程间缓存)" />
+      <KeyValueClass Key="CahceHashHander_Redis"  Val="192.168.10.246:6379"   M="osm_tools.CacheParts.CahceHashHander_Factory_Redis,osm_tools"  Tag="全局缓存(进程间缓存)" />
+    </Childs>
+  </KeyValueClass>
+
+
+  <KeyValueClass Key="appSettings" Val=""  Tag="其它配置信息" M="MCR.AppSettings,MCR">
+    <Childs>
+      <KeyValueClass Key="IsDebug" Val="True"  Tag="是否测试状态"/>
+      <KeyValueClass Key="WebRoot_DIR" Val="G:\Micro_Classroom\MCR_New\web_MCR\"  Tag="web站点的目录"/>
+      <KeyValueClass Key="Log" Val="E:\NewBo\MyClient\Micro_Classroom\MCR_New\web_MCR\logs\"  Tag="日志文件的存储目录"/>
+      <KeyValueClass Key="Temps_DIR" Val="G:\Micro_Classroom\MCR_New\web_MCR\temps\"  Tag="临时文件存放目录"/>
+      <KeyValueClass Key="FS_DIR" Val="G:\Micro_Classroom\MCR_New\web_MCR\FileStroe\"  Tag="文件存储目录"/>
+      <KeyValueClass Key="FS_SerURL" Val="http://127.0.0.1:7788/FileStroe/"  Tag="文件服务器的文件目录的URL"/>
+      <KeyValueClass Key="FS_URL" Val="http://127.0.0.1:7788/MFile.aspx?Action=1|FID={0}"  Tag="文件服务器的访问URL模板"/>
+      <KeyValueClass Key="WebURL" Val="http://127.0.0.1:7788/"  Tag="当前站点的的URL"/>
+      <KeyValueClass Key="WebURL_Login" Val="http://127.0.0.1:7788/sys"  Tag="站点的的后台登录页的URL"/>
+      <KeyValueClass Key="WebURL_qrcodeMe" Val="http://127.0.0.1:7788/views/qrcodeMe.html"  Tag="微信关注引导页"/>
+
+      <KeyValueClass Key="GetDocument_URL" Val="http://127.0.0.1:7788/MFile.aspx?FID={0}|DocmentID={1}|GetDocFirstImg={2}"  Tag="获取浏览文档的URL"/>
+      <KeyValueClass Key="NONE_DOC_ImgURL" Val="http://127.0.0.1:7788/views/image/ppt.png"  Tag="获取文档空图片的URL"/>
+      <KeyValueClass Key="NONE404_URL" Val="http://127.0.0.1:7788/views/err404.html"  Tag="无效页的URL"/>
+
+      <KeyValueClass Key="FileTypeIcon_URL" Val="http://127.0.0.1:7788/Views/img3/COU/"  Tag="获取文件类型的图标URL目录"/>
+      <!--123456789#@ABCDEFGHIJKLMNOPQRSTUVWXYZ+-?*-->
+      <KeyValueClass Key="CheckCodes" Val="123456789#@ABCDEFGHIJKLMNOPQRSTUVWXYZ"  Tag=""/>
+
+      <KeyValueClass Key="ffmpeg" Val="G:\Micro_Classroom\MCR_New\web_MCR\bin\ffmpeg.exe"  Tag="ffmpeg.exe文件路径"/>
+
+      <KeyValueClass Key="ServiceIP" Val="127.0.0.1"  Tag="服务的通信IP"/>
+      <KeyValueClass Key="ServicePort" Val="5123"  Tag="服务通信的发送及接收端口"/>
+      <KeyValueClass Key="DefaultPWD" Val="123456"  Tag="获取由系统默认指定的密码值"/>
+      <KeyValueClass Key="App_Version" Val="1.5" M="http://127.0.0.1:7788/publish"  Tag="app的版本更新">
+        <Childs>
+          <KeyValueClass Key="Application Files" Val=""   >
+            <Childs>
+              <KeyValueClass Key="PowerPointAddIn1_1_0_0_15" Val="" >
+                <Childs>
+                  <KeyValueClass Key="img" Val="" >
+                    <Childs>
+                      <KeyValueClass Key="Create_Courseware.png.deploy" Val="1" />
+                      <KeyValueClass Key="Create_Discuss.png.deploy" Val="1" />
+                      <KeyValueClass Key="Create_Nofity.png.deploy" Val="1" />
+                      <KeyValueClass Key="Create_Question.png.deploy" Val="1" />
+                      <KeyValueClass Key="EditBox.png.deploy" Val="1" />
+                      <KeyValueClass Key="Insert_Question_More.png.deploy" Val="1" />
+                      <KeyValueClass Key="Insert_Question_One.png.deploy" Val="1" />
+                      <KeyValueClass Key="Insert_Vedio.png.deploy" Val="1" />
+                      <KeyValueClass Key="Insert_Vote.png.deploy" Val="1" />
+                      <KeyValueClass Key="NONE.png.deploy" Val="1" />
+                      <KeyValueClass Key="Orientation.png.deploy" Val="1" />
+                      <KeyValueClass Key="RunPPT.png.deploy" Val="1" />
+                      <KeyValueClass Key="SiginIn.png.deploy" Val="1" />
+                      <KeyValueClass Key="Upload_File.png.deploy" Val="1" />
+                      <KeyValueClass Key="UserLogin.png.deploy" Val="1" />
+                      <KeyValueClass Key="UserLogin2.png.deploy" Val="1" />
+                    </Childs>
+                  </KeyValueClass>
+
+                  <KeyValueClass Key="logs" Val="" >
+                    <Childs>
+                      <KeyValueClass Key="test.txt.deploy" Val="1" />
+                    </Childs>
+                  </KeyValueClass>
+
+                  <KeyValueClass Key="temps" Val="" >
+                    <Childs>
+                      <KeyValueClass Key="test.txt.deploy" Val="1" />
+                    </Childs>
+                  </KeyValueClass>
+
+                  <KeyValueClass Key="MCR.dll.deploy" Val="1" />
+                  <KeyValueClass Key="Microsoft.Office.Tools.Common.v4.0.Utilities.dll.deploy" Val="1" />
+                  <KeyValueClass Key="PowerPointAddIn1.dll.config.deploy" Val="1" />
+                  <KeyValueClass Key="PowerPointAddIn1.dll.deploy" Val="1" />
+                  <KeyValueClass Key="PowerPointAddIn1.dll.manifest" Val="1" />
+                  <KeyValueClass Key="PowerPointAddIn1.vsto" Val="1" />
+                  <KeyValueClass Key="Tools.dll.deploy" Val="1" />
+                  <KeyValueClass Key="websocket-sharp.dll.deploy" Val="1" />
+                  <KeyValueClass Key="winVSTO.dll.deploy" Val="1" />
+                </Childs>
+              </KeyValueClass>
+            </Childs>
+          </KeyValueClass>
+          <KeyValueClass Key="PowerPointAddIn1.vsto" Val="1" />
+          <KeyValueClass Key="setup.exe" Val="1" />
+        </Childs>
+      </KeyValueClass>
+
+
+  <KeyValueClass Key="QST" Val=""  Tag="QST平台配置">
+    <Childs>
+      <!--
+      <KeyValueClass Key="WebRoot" Val="http://49.4.2.157:8081/"  V="course/" />
+      <KeyValueClass Key="LoginName" Val="boclassroom" />
+      <KeyValueClass Key="LoginPassword" Val="interface_bkt_1114" /> -->
+      
+      <KeyValueClass Key="WebRoot" Val="http://gatewaytev.eec-cn.com/"  V="course/" />
+      <KeyValueClass Key="LoginName" Val="boclassroom" />
+      <KeyValueClass Key="LoginPassword" Val="interface_bkt_1114" />
+    </Childs>
+  </KeyValueClass>
+
+  </Childs>
+  </KeyValueClass>
+
+
+  <KeyValueClass Key="Tool_ConvertHTML" Val="" Tag="文档转换的工作进程入口配置信息" >
+    <Childs>
+      <KeyValueClass Key="IPAddress" Val="127.0.0.1" />
+      <KeyValueClass Key="Port" Val="9002" />
+    </Childs>
+  </KeyValueClass>
+
+
+  <KeyValueClass Key="WX" Val=""  Tag="微信参数配置">
+    <Childs>
+      <KeyValueClass Key="AppID" Val="wx9ec97a9d868c35c8"  Tag="微信公众号ID"/>
+      <KeyValueClass Key="AppSecret" Val="c5913e328f54604cd1e191a39fb2dae0"  Tag="管理员应用密钥"/>
+      <KeyValueClass Key="Token" Val="a813ffef882953bf6fa188f7"  Tag="响应微信发送的Token验证"/>
+      <KeyValueClass Key="EncodingAESKey" Val="buQtxs9a3Fj4fUGa8oqzj3lSU5gE1TRwvznVIz9AZXK"  Tag="访问外部服务器站点的验证Key"/>
+      <KeyValueClass Key="MchID" Val=""  Tag="商户号ID"/>
+      <KeyValueClass Key="PayKey" Val=""  Tag="支付密钥Key"/>
+      <KeyValueClass Key="PayedNotifyURL" Val=""  Tag="支付完成后的回调处理页面"/>
+    </Childs>
+  </KeyValueClass>
+
+
+  <KeyValueClass Key="E_Mail_Setting" Tag="邮件服务的设置" >
+    <Childs>
+      <KeyValueClass Key="UserName" Val="bo1112002test@163.com" />
+      <KeyValueClass Key="Password" Val="87654321" />
+      <KeyValueClass Key="Server" Val="smtp.163.com" />
+    </Childs>
+  </KeyValueClass>
+  <!--========================================================================================-->
+
+
+  <!--M:表示为排序(值越大常用度就高)-->
+  <KeyValueClass Key="PType" Val=""  Tag="文件的物理类型, M->IConvvertToPDF">
+    <Childs>
+      <KeyValueClass Key="0" Val="others.png" Tag="其它"  M="0">
+        <Childs>
+          <KeyValueClass Key="0" Val="data" Tag="ppt或word插件的自定义压缩文件" />
+        </Childs>
+      </KeyValueClass>
+      <KeyValueClass Key="1" Val="zip.png" Tag="压缩文件" >
+        <Childs>
+          <KeyValueClass Key="11" Val="rar" />
+          <KeyValueClass Key="12" Val="zip" />
+        </Childs>
+      </KeyValueClass>
+      <KeyValueClass Key="100" Val="word.png" Tag="文档文件"  M="3">
+        <Childs>
+          <KeyValueClass Key="101" Val="pdf" M="clc.tool.CopyPDF,clc" V=".PDF"/>
+          <KeyValueClass Key="104" Val="txt" />
+          <KeyValueClass Key="105" Val="ppt" M="clc.tool.ConvvertPDF,clc" V=".PDF"/>
+          <KeyValueClass Key="106" Val="doc" M="clc.tool.ConvvertPDF,clc" V=".PDF" />
+          <KeyValueClass Key="106" Val="docx" M="clc.tool.ConvvertPDF,clc" V=".PDF" />
+          <KeyValueClass Key="107" Val="xls" M="clc.tool.ConvvertPDF,clc" V=".PDF"/>
+          <KeyValueClass Key="108" Val="xlsx" M="clc.tool.ConvvertPDF,clc" V=".PDF" />
+          <KeyValueClass Key="109" Val="pptx" M="clc.tool.ConvvertPDF,clc" V=".PDF"/>
+        </Childs>
+      </KeyValueClass>
+      <KeyValueClass Key="200" Val="mp4.png" Tag="视频文件"  M="2">
+        <Childs>
+          <!--<KeyValueClass Key="201" Val="rm" />
+          <KeyValueClass Key="202" Val="avi" />-->
+          <KeyValueClass Key="203" Val="mp4" />
+        </Childs>
+      </KeyValueClass>
+      <KeyValueClass Key="300" Val="wav.png" Tag="声音文件"  M="0">
+        <Childs>
+          <KeyValueClass Key="301" Val="mp3" />
+          <KeyValueClass Key="302" Val="wav" />
+        </Childs>
+      </KeyValueClass>
+      <KeyValueClass Key="400" Val="pic.png" Tag="图形文件" M="1">
+        <Childs>
+          <KeyValueClass Key="401" Val="bmp" />
+          <KeyValueClass Key="402" Val="jpg" />
+          <KeyValueClass Key="403" Val="png" />
+          <KeyValueClass Key="404" Val="tif" />
+          <KeyValueClass Key="405" Val="gif" />
+        </Childs>
+      </KeyValueClass>
+    </Childs>
+  </KeyValueClass>
+
+
+  <KeyValueClass Key="UType" Val=""  Tag="文件的逻辑类型">
+    <Childs>
+      <KeyValueClass Key="0" Val="未知"   />
+      <KeyValueClass Key="1" Val="自定义" />
+      <KeyValueClass Key="2" Val="课件"   />
+      <KeyValueClass Key="3" Val="作业"   />
+    </Childs>
+  </KeyValueClass>
+
+
+  <!--管理员后台登陆的菜单管理配置-->
+  <KeyValueClass Key="Admin_Navigation" Val="0"  Tag="用户端功能导航">
+    <Childs>
+      <KeyValueClass Key="E_SysAdmin" Val="系统管理员后台登陆的菜单管理配置" >
+        <Childs>
+          <KeyValueClass Key="0" Val="http://127.0.0.1:7788/views/admin/user.html"  Tag="管理员帐户"  M="glyphicon glyphicon-tag"/>
+          <KeyValueClass Key="1" Val="http://127.0.0.1:7788/views/admin/user.html"  Tag="在线学校管理"  M="glyphicon glyphicon-tag"/>
+          <KeyValueClass Key="2" Val="http://127.0.0.1:7788/views/admin/user.html"  Tag="微信成员管理"  M="glyphicon glyphicon-tag"/>
+        </Childs>
+      </KeyValueClass>
+
+      <KeyValueClass Key="E_SchoolAdmin" Val="学校管理员后台登陆的菜单管理配置" >
+        <Childs>
+          <KeyValueClass Key="0" Val="http://127.0.0.1:7788/views/admin/user.html"  Tag="个人信息"  M="glyphicon glyphicon-tag"/>
+          <KeyValueClass Key="5" Val="http://127.0.0.1:7788/views/admin/user.html"  Tag="学科信息"  M="glyphicon glyphicon-tag" />
+          <KeyValueClass Key="1" Val="http://127.0.0.1:7788/views/admin/user.html"  Tag="学校人员"  M="glyphicon glyphicon-tag"/>
+          <KeyValueClass Key="2" Val="http://127.0.0.1:7788/views/admin/user.html"  Tag="资源库"  M="glyphicon glyphicon-tag"/>
+          <KeyValueClass Key="3" Val="http://127.0.0.1:7788/views/admin/user.html"  Tag="消息及通知"  M="glyphicon glyphicon-tag"/>
+          <KeyValueClass Key="4" Val="http://127.0.0.1:7788/views/admin/user.html"  Tag="反馈信息查询"  M="glyphicon glyphicon-tag"/>
+        </Childs>
+      </KeyValueClass>
+
+      <KeyValueClass Key="E_Teacher" Val="老师后台登陆的菜单管理配置" >
+        <Childs>
+          <KeyValueClass Key="0" Val="http://127.0.0.1:7788/views/admin/m_user.html"  Tag="个人信息"  M="glyphicon glyphicon-tag"/>
+          <KeyValueClass Key="1" Val="http://127.0.0.1:7788/views/admin/user.html"  Tag="班级及成员"  M="glyphicon glyphicon-tag"/>
+          <KeyValueClass Key="2" Val="http://127.0.0.1:7788/views/admin/user.html"  Tag="课程信息"  M="glyphicon glyphicon-tag"/>
+        </Childs>
+      </KeyValueClass>
+    </Childs>
+  </KeyValueClass>
+
+
+  <KeyValueClass Key="User_Navigation" Val="0"  Tag="用户端功能导航">
+    <Childs>
+      <KeyValueClass Key="E_SchoolAdmin" Val="2"  Tag="管理员">
+        <Childs>
+          <KeyValueClass Key="0" Val="ad-statistics.html" Tag="课程统计"  M="http://127.0.0.1:7788/views/image/course2x.png"  />
+          <KeyValueClass Key="1" Val="ad-adpage.html" Tag="管理"   M="http://127.0.0.1:7788/views/image/control2x.png" />
+          <KeyValueClass Key="2" Val="ad-notice.html" Tag="通知"   M="http://127.0.0.1:7788/views/image/notice2x.png"  />
+          <KeyValueClass Key="3" Val="m-datalist.html" Tag="资料库"   M="http://127.0.0.1:7788/views/image/datalbox2x.png"  />
+          <KeyValueClass Key="4" Val="m-setting.html" Tag="设置" M="http://127.0.0.1:7788/views/image/setting2x.png" />
+        </Childs>
+      </KeyValueClass>
+      <KeyValueClass Key="E_Teacher" Val="1"  Tag="老师">
+        <Childs>
+          <KeyValueClass Key="0" Val="teacher/lecture-list.html" Tag="我讲的课"  M="http://127.0.0.1:7788/views/image/mycourse2x.png"  />
+          <KeyValueClass Key="1" Val="teacher/my_lesson.html" Tag="讲过的课"   M="http://127.0.0.1:7788/views/image/listen2x.png" />
+          <KeyValueClass Key="2" Val="teacher/wrongnotes.html" Tag="错题本"   M="http://127.0.0.1:7788/views/image/wrongbook2x.png"  />
+          <KeyValueClass Key="3" Val="m-datalist.html" Tag="资料库"   M="http://127.0.0.1:7788/views/image/datalbox2x.png"  />
+          <KeyValueClass Key="4" Val="m-setting.html" Tag="设置" M="http://127.0.0.1:7788/views/image/setting2x.png"  />
+        </Childs>
+      </KeyValueClass>
+      <KeyValueClass Key="E_Student" Val="0"  Tag="学生">
+        <Childs>
+          <KeyValueClass Key="0" Val="m-pre-lesson.html" Tag="预习的课"  M="http://127.0.0.1:7788/views/image/preview2x.png"  />
+          <KeyValueClass Key="1" Val="my_lesson.html" Tag="我听的课"   M="http://127.0.0.1:7788/views/image/listen2x.png" />
+          <KeyValueClass Key="2" Val="st_wrongnotes.html" Tag="错题本"   M="http://127.0.0.1:7788/views/image/wrongbook2x.png"  />
+          <KeyValueClass Key="3" Val="m-datalist_stu.html" Tag="资料库"   M="http://127.0.0.1:7788/views/image/datalbox2x.png"  />
+          <KeyValueClass Key="4" Val="m-setting.html" Tag="设置" M="http://127.0.0.1:7788/views/image/setting2x.png" />
+        </Childs>
+      </KeyValueClass>
+
+    </Childs>
+  </KeyValueClass>
+
+
+</ArrayOfKeyValueClass>

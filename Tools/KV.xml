@@ -1,0 +1,258 @@
+<?xml version="1.0"?>
+<ArrayOfKeyValueClass xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <!--
+  说明：（代码对应的结构类型->KeyValueClass）
+  Key:标签->变量名或标识名
+  Val:标签对应的值
+  Tag:标识：默认值：UI(如果需要自动标注则为默认值，否则过滤Tag<>UI的标签)
+  Chidls:子项(可以无限嵌套子项(无限级)，当前只应用了两级)
+  如：
+  <KeyValueClass Key="U_UserGroup1Edit" Val="" >
+    <Childs>
+      <KeyValueClass Key="groupBox1" Val="groupBox1" />
+      <KeyValueClass Key="label3" Val="label3" />
+    </Childs>
+  </KeyValueClass>
+  -->
+  <KeyValueClass Key="SessionUserBase" Val=""  Tag="令牌功能的实现类" M=""></KeyValueClass>
+  
+  <!-- 自定义标签-->
+  <KeyValueClass Key="MenuView.Icon" Val=""  Tag="MenuView">
+    <Childs>
+      <KeyValueClass Key="9rules" Val="/Imgs/9rules.png" Tag="png"/>
+      <KeyValueClass Key="Bebo" Val="/Imgs/Bebo.png" Tag="png"/>
+      <KeyValueClass Key="behance" Val="/Imgs/behance.png" Tag="png"/>
+      <KeyValueClass Key="blogger" Val="/Imgs/blogger.png" Tag="png"/>
+      <KeyValueClass Key="bloggr" Val="/Imgs/bloggr.png" Tag="png"/>
+      <KeyValueClass Key="Brightkite" Val="/Imgs/Brightkite.png" Tag="png"/>
+      <KeyValueClass Key="clipboard" Val="/Imgs/clipboard.png" Tag="png"/>
+      <KeyValueClass Key="Delicious" Val="/Imgs/Delicious.png" Tag="png"/>
+      <KeyValueClass Key="Designfloat" Val="/Imgs/Designfloat.png" Tag="png"/>
+      <KeyValueClass Key="DesignMoo" Val="/Imgs/DesignMoo.png" Tag="png"/>
+      <KeyValueClass Key="deviantart" Val="/Imgs/deviantart.png" Tag="png"/>
+      <KeyValueClass Key="digg" Val="/Imgs/digg.png" Tag="png"/>
+      <KeyValueClass Key="doc" Val="/Imgs/doc.png" Tag="png"/>
+      <KeyValueClass Key="Dopplr" Val="/Imgs/Dopplr.png" Tag="png"/>
+      <KeyValueClass Key="download" Val="/Imgs/download.png" Tag="png"/>
+      <KeyValueClass Key="dribbble" Val="/Imgs/dribbble.png" Tag="png"/>
+      <KeyValueClass Key="dribble" Val="/Imgs/dribble.png" Tag="png"/>
+      <KeyValueClass Key="evernote" Val="/Imgs/evernote.png" Tag="png"/>
+      <KeyValueClass Key="facebook" Val="/Imgs/facebook.png" Tag="png"/>
+      <KeyValueClass Key="flag" Val="/Imgs/flag.png" Tag="png"/>
+      <KeyValueClass Key="flickr" Val="/Imgs/flickr.png" Tag="png"/>
+      <KeyValueClass Key="forrst" Val="/Imgs/forrst.png" Tag="png"/>
+      <KeyValueClass Key="Gamespot" Val="/Imgs/Gamespot.png" Tag="png"/>
+      <KeyValueClass Key="GMail" Val="/Imgs/GMail.png" Tag="png"/>
+      <KeyValueClass Key="Google" Val="/Imgs/Google.png" Tag="png"/>
+      <KeyValueClass Key="googleplus" Val="/Imgs/googleplus.png" Tag="png"/>
+      <KeyValueClass Key="gradle-icon-64x64" Val="/Imgs/gradle-icon-64x64.png" Tag="png"/>
+      <KeyValueClass Key="IconBlock" Val="/Imgs/IconBlock.png" Tag="png"/>
+      <KeyValueClass Key="ic_launcher" Val="/Imgs/ic_launcher.png" Tag="png"/>
+      <KeyValueClass Key="instagram" Val="/Imgs/instagram.png" Tag="png"/>
+      <KeyValueClass Key="Joomla" Val="/Imgs/Joomla.png" Tag="png"/>
+      <KeyValueClass Key="Last.FM" Val="/Imgs/Last.FM.png" Tag="png"/>
+      <KeyValueClass Key="Linked In" Val="/Imgs/Linked In.png" Tag="png"/>
+      <KeyValueClass Key="linkedin" Val="/Imgs/linkedin.png" Tag="png"/>
+      <KeyValueClass Key="Live Journal" Val="/Imgs/Live Journal.png" Tag="png"/>
+      <KeyValueClass Key="MacThemes2" Val="/Imgs/MacThemes2.png" Tag="png"/>
+      <KeyValueClass Key="Mail" Val="/Imgs/Mail.png" Tag="png"/>
+      <KeyValueClass Key="Mobile Me" Val="/Imgs/Mobile Me.png" Tag="png"/>
+      <KeyValueClass Key="myspace" Val="/Imgs/myspace.png" Tag="png"/>
+      <KeyValueClass Key="Netvibes" Val="/Imgs/Netvibes.png" Tag="png"/>
+      <KeyValueClass Key="Newswine" Val="/Imgs/Newswine.png" Tag="png"/>
+      <KeyValueClass Key="OpenID" Val="/Imgs/OpenID.png" Tag="png"/>
+      <KeyValueClass Key="orkut" Val="/Imgs/orkut.png" Tag="png"/>
+      <KeyValueClass Key="other" Val="/Imgs/other.png" Tag="png"/>
+      <KeyValueClass Key="pinterest" Val="/Imgs/pinterest.png" Tag="png"/>
+      <KeyValueClass Key="Playfire" Val="/Imgs/Playfire.png" Tag="png"/>
+      <KeyValueClass Key="recycle" Val="/Imgs/recycle.png" Tag="png"/>
+      <KeyValueClass Key="RSS 1" Val="/Imgs/RSS 1.png" Tag="png"/>
+      <KeyValueClass Key="RSS 2" Val="/Imgs/RSS 2.png" Tag="png"/>
+      <KeyValueClass Key="search" Val="/Imgs/search.png" Tag="png"/>
+      <KeyValueClass Key="security" Val="/Imgs/security.png" Tag="png"/>
+      <KeyValueClass Key="settings" Val="/Imgs/settings.png" Tag="png"/>
+      <KeyValueClass Key="Share This" Val="/Imgs/Share This.png" Tag="png"/>
+      <KeyValueClass Key="share" Val="/Imgs/share.png" Tag="png"/>
+      <KeyValueClass Key="skype" Val="/Imgs/skype.png" Tag="png"/>
+      <KeyValueClass Key="Social Vibe" Val="/Imgs/Social Vibe.png" Tag="png"/>
+      <KeyValueClass Key="Stumble Upon" Val="/Imgs/Stumble Upon.png" Tag="png"/>
+      <KeyValueClass Key="stumbleupon" Val="/Imgs/stumbleupon.png" Tag="png"/>
+      <KeyValueClass Key="stumbleupon2" Val="/Imgs/stumbleupon2.png" Tag="png"/>
+      <KeyValueClass Key="Technorati" Val="/Imgs/Technorati.png" Tag="png"/>
+      <KeyValueClass Key="tumblr" Val="/Imgs/tumblr.png" Tag="png"/>
+      <KeyValueClass Key="Twitter 1" Val="/Imgs/Twitter 1.png" Tag="png"/>
+      <KeyValueClass Key="Twitter 2" Val="/Imgs/Twitter 2.png" Tag="png"/>
+      <KeyValueClass Key="twitter" Val="/Imgs/twitter.png" Tag="png"/>
+      <KeyValueClass Key="upload" Val="/Imgs/upload.png" Tag="png"/>
+      <KeyValueClass Key="Viddler" Val="/Imgs/Viddler.png" Tag="png"/>
+      <KeyValueClass Key="vimeo" Val="/Imgs/vimeo.png" Tag="png"/>
+      <KeyValueClass Key="Wordpress" Val="/Imgs/Wordpress.png" Tag="png"/>
+      <KeyValueClass Key="XBOX 360" Val="/Imgs/XBOX 360.png" Tag="png"/>
+      <KeyValueClass Key="Yelp" Val="/Imgs/Yelp.png" Tag="png"/>
+    </Childs>
+  </KeyValueClass>
+
+  <KeyValueClass Key="MenuView.Code" Val="" Tag="Funs">
+    <Childs>
+      <KeyValueClass Key="基本信息" Val="" />
+      <KeyValueClass Key="部门结构" Val="CStarry.Views.Department_ListView" />
+      <KeyValueClass Key="员工管理" Val="CStarry.Views.Empoyee_ListView" />
+      <KeyValueClass Key="职务与权限" Val="" />
+      <KeyValueClass Key="设备管理" Val="" />
+      <KeyValueClass Key="我的信息" Val="" />
+      <KeyValueClass Key="主菜单设置" Val="CStarry.Views.Controls.MenuView_Edit" />
+      <KeyValueClass Key="组织信息" Val="CStarry.Views.Controls.CompanyUse_Edit" />
+      <KeyValueClass Key="所有公司信息管理" Val="CStarry.Views.CompanyUse_ListView" />
+
+      <KeyValueClass Key="商品类别编辑" Val="CStarry.Views.ProductType_EditView" />
+      <KeyValueClass Key="商品基础信息编辑" Val="" />
+      <KeyValueClass Key="仓库物品编辑" Val="CStarry.Views.Product_EditView" />
+      <KeyValueClass Key="价格单位编辑" Val="CStarry.Views.Unit_EditView" />
+      <KeyValueClass Key="顾客类别的编辑" Val="CStarry.Views.CustomerType_EditView" />
+      <KeyValueClass Key="顾客信息编辑" Val="CStarry.Views.Customer_EditView" />
+      <KeyValueClass Key="顾客充值" Val="CStarry.Views.CustomerMoney_AddView" />
+
+
+      <KeyValueClass Key="价格管理" Val="CStarry.Views.PriceType_MgrView" />
+
+
+      <KeyValueClass Key="客房营业管理" Val="CStarry.Views.OrderRoom_MgrView" />
+      <KeyValueClass Key="零售" Val="CStarry.Views.Controls.OrderGoods_Edit" />
+
+    </Childs>
+  </KeyValueClass>
+
+  <!--公司标识-->
+  <KeyValueClass Key="CompanyUse.CompanyTag" Val=""  Tag="Tag">
+    <Childs>
+      <KeyValueClass Key="-1" Val="非注册" />
+      <KeyValueClass Key="0" Val="试用" />
+      <KeyValueClass Key="1" Val="正式" />
+    </Childs>
+  </KeyValueClass>
+
+
+
+  <!--操作方式(下面的有效值只能在 -9000到+9000内用户的操作方可有效，超出该范围的为系统使用)-->
+  <KeyValueClass Key="MoneyTrading" Val=""  Tag="Tag">
+    <Childs>
+
+      <!--支付方式
+        M：需要指定一个实现了EntityDB抽象类型的对象类型,又用于重新指定数据对象的验证及持久的个性处理
+        -->
+      <KeyValueClass Key="8000" Val="SYSTEM"  Tag="系统">
+        <Childs>
+          <KeyValueClass Key="0" Tag="现金" />
+          <KeyValueClass Key="1" Tag="充值卡"  M="Core.Model.My.Money.OrderSettle2_DB,Core" />
+          <KeyValueClass Key="2" Tag="信用卡" />
+          <KeyValueClass Key="3" Tag="代金券" />
+
+
+          <KeyValueClass Key="-60" Tag="充值赠送" />
+          
+          <!--
+          <KeyValueClass Key="4000" Tag="输错" />
+          <KeyValueClass Key="2000" Tag="其它营业支出或收入" />
+          
+<KeyValueClass Key="8001" Tag="自动销售" M="Core.Model.My.Money.UserNotInsert,Core" />
+          <KeyValueClass Key="-40" Tag="扣减优惠" />
+          <KeyValueClass Key="-41" Tag="打折优惠" />
+          <KeyValueClass Key="-50" Tag="代金券" />
+          
+          <KeyValueClass Key="-80" Tag="多收或少收" />
+          <KeyValueClass Key="-90" Tag="取整" />
+          <KeyValueClass Key="-1000" Tag="积分" />
+          <KeyValueClass Key="-2000" Tag="其它营业外支出或收入" />
+          <KeyValueClass Key="-3000" Tag="其它优惠" />-->
+
+        </Childs>
+      </KeyValueClass>
+      
+      <!--某些操作是需要分配特权，才能进行的-->
+      <KeyValueClass Key="1" Val="SELL" Tag="销售" M="Core.Model.My.Money.OrderSettle_Factory,Core">
+        <Childs>
+          <KeyValueClass Key="30" Tag="收款" RefChildsKey="MoneyTrading->8000[0,2,3,1]" />
+          <KeyValueClass Key="31" Tag="找零" RefChildsKey="MoneyTrading->8000[0]" />
+          <KeyValueClass Key="-32" Tag="优惠" RefChildsKey="MoneyTrading->8000[0]" />
+        </Childs>
+      </KeyValueClass>
+
+      <KeyValueClass Key="11"  Val="CUSTOMER_MONEY" Tag="顾客金额功能"  M="Core.Model.My.Money.CustomerMoney_Factory,Core" >
+        <Childs>
+          <KeyValueClass Key="10" Tag="冲值" RefChildsKey="MoneyTrading->8000[0,2]" />
+          <KeyValueClass Key="-10" Tag="充值赠送" RefChildsKey="MoneyTrading->8000[0]" />
+          <KeyValueClass Key="20" Tag="预付" RefChildsKey="MoneyTrading->8000[0,2]" />
+        </Childs>
+      </KeyValueClass>
+
+      
+    </Childs>
+  </KeyValueClass>
+
+  <KeyValueClass Key="ProductType.FunTag" Val="Funs" >
+    <Childs>
+      <KeyValueClass Key="0" Val="SELL_GOODS"  Tag="零售">
+        <Childs>
+          <KeyValueClass Key="IProduct"
+                         M="Core.Model.My.PDT.Product_Goods_Factory,Core"
+                         V="CStarry.Views.Controls.Product_GoodsEdit,CStarry" />
+
+          <KeyValueClass Key="Order" Tag="订单"
+                        M="Core.Model.My.Orders.OrderGoods_Factory,Core"
+                        V="CStarry.Views.Controls.OrderRoom_Edit,CStarry"  />
+          <KeyValueClass Key="OrderDetail" Tag="订单明细"
+                         M="Core.Model.My.Orders.OrderDetailGoods_Factory,Core"
+                         V="CStarry.Views.Controls.OrderRoom_Edit,CStarry"  />
+          
+        </Childs>
+      </KeyValueClass>
+      <KeyValueClass Key="1" Val="ROOM" Tag="客房" >
+        <Childs>
+          <KeyValueClass Key="IProduct" Tag="商品"
+                         M="Core.Model.My.PDT.Product_Room_Fectory,Core"
+                         V="CStarry.Views.Controls.Product_Room_Edit,CStarry"  />
+
+          <KeyValueClass Key="PriceFuncType" Val=""  Tag="价格功能类型">
+            <Childs>
+              <KeyValueClass Key="D" Val="D" Tag="全天" >
+                <Childs>
+                  <KeyValueClass Key="IPricePolicy" Val=""  Tag="价格策略"
+                             M="Core.Model.My.Price.PricePolicy_RoomDay_Factory,Core"
+                             V="CStarry.Views.Controls.PricePolicy_RoomDay_Edit,CStarry"></KeyValueClass>
+                  <KeyValueClass Key="IPriceDealsPolicy" Val=""  Tag="优惠策略"
+                            M="Core.Model.My.Price.PriceDealsPolicy_Room_Factory,Core"></KeyValueClass>
+                </Childs>
+              </KeyValueClass>
+
+              <KeyValueClass Key="H" Val="H"  Tag="钟点">
+                <Childs>
+                  <KeyValueClass Key="IPricePolicy" Tag="价格策略"
+                           M="Core.Model.My.Price.PricePolicy_RoomHour_Factory,Core"
+                           V="CStarry.Views.Controls.PricePolicy_RoomHour_Edit,CStarry"  />
+                  <KeyValueClass Key="IPriceDealsPolicy" Val=""  Tag="优惠策略"
+                           M="Core.Model.My.Price.PriceDealsPolicy_Room_Factory,Core"></KeyValueClass>
+                </Childs>
+              </KeyValueClass>
+            </Childs>
+          </KeyValueClass>
+
+          <KeyValueClass Key="Order" Tag="订单"
+                         M="Core.Model.My.Orders.OrderRoom_Factory,Core"
+                         V="CStarry.Views.Controls.OrderRoom_Edit,CStarry"  />
+          <KeyValueClass Key="OrderDetail" Tag="订单明细"
+                         M="Core.Model.My.Orders.OrderDetailRoom_Factory,Core"
+                         V="CStarry.Views.Controls.OrderRoom_Edit,CStarry"  />
+
+          <!--<KeyValueClass Key="OrderRoom" Val=""  Tag="客房订单">
+            <Childs>
+              <KeyValueClass Key="Order" Val="" Tag="订单" M="Core.Model.My.Orders.OrderRoom"  V=""></KeyValueClass>
+              <KeyValueClass Key="OrderDetail" Val="" Tag="明细" M="Core.Model.My.Orders.OrderDetailRoom"  V=""></KeyValueClass>
+            </Childs>
+          </KeyValueClass>-->
+
+        </Childs>
+      </KeyValueClass>
+    </Childs>
+  </KeyValueClass>
+
+</ArrayOfKeyValueClass>
